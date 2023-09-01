@@ -1,0 +1,242 @@
+.video-banner {
+    /* position: relative; */
+    overflow: hidden;
+}
+nav {
+    z-index: 10000;
+    width: 100%;
+}
+/* 
+.navbar-expand-lg .navbar-nav {
+    flex-direction: column;
+}
+
+.navbar-expand-lg .navbar-toggler {
+    display: block;
+} */
+
+.sh_navbar.show {
+    display: block !important;
+    transform: translateY(0);
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.sh_navbar.hide {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.sh_navbar {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    height: 100vh;
+    background: black;
+    padding: 40px;
+    display: none !important;
+    transform: translateY(-100%);
+    opacity: 0;
+}
+.video-banner video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Change the opacity as desired */
+    z-index: 1;
+}
+
+.text-slider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+}
+
+.text-slider .carousel-item {
+    display: none;
+}
+
+.text-slider .carousel-item.active {
+    display: block;
+}
+
+.text-slider .carousel-item.active .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.text-slider h1 {
+    font-size: 7.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.text-slider p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.text-slider .btn {
+    font-size: 18px;
+    padding: 12px 30px;
+}
+
+/* moving dots  */
+.bnr-img-moving {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%
+}
+
+.bnr-img-moving img {
+    position: absolute
+}
+
+.bnr-img-moving {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000
+}
+
+.bnr-img-moving img {
+    position: absolute
+}
+
+.move_dots {
+    animation: animatedBackground_dots 150s linear infinite;
+    position: absolute;
+    left: 0;
+    background-image: url(../images/banner-dots-1.png);
+    background-repeat: repeat;
+    width: 500%;
+    height: 788px;
+    top: 30px;
+    z-index: 999
+}
+
+img.move-img-1 {
+    left: -143px;
+    right: 0;
+    margin: auto
+}
+
+img.move-img-2 {
+    left: 0;
+    top: 0;
+    margin: auto;
+    bottom: 0
+}
+
+img.move-img-3 {
+    right: 50px;
+    top: 100px
+}
+
+img.move-img-4 {
+    right: 26px;
+    bottom: 65px
+}
+
+.inner_banner img.move-img-1 {
+    left: -450px;
+    right: 0;
+    margin: auto;
+    top: -170px
+}
+
+.move-img-2 {
+    animation: move-img-2 5s infinite;
+    animation-timing-function: linear;
+    z-index: 999
+}
+
+@keyframes move-img-2 {
+    0% {
+        transform: translateY(-1vw)
+    }
+
+    50% {
+        transform: translateY(.5vw)
+    }
+
+    100% {
+        transform: translateY(-1vw)
+    }
+}
+
+.move-img-4 {
+    animation: move-img-4 5s infinite;
+    animation-timing-function: linear
+}
+
+@keyframes move-img-4 {
+    0% {
+        transform: translateY(1vw)
+    }
+
+    50% {
+        transform: translateY(-1vw)
+    }
+
+    100% {
+        transform: translateY(1vw)
+    }
+}
+
+.move-img-3,
+.plus_sign1 {
+    -webkit-animation: move-img-3 7s infinite linear
+}
+
+@-webkit-keyframes move-img-3 {
+    from {
+        -webkit-transform: rotate(0)
+    }
+
+    to {
+        -webkit-transform: rotate(359deg)
+    }
+}
+
+
+.move_dots {
+    animation: animatedBackground_dots 150s linear infinite;
+    position: absolute;
+    left: 0;
+    background-image: url(./assets/image/moving/banner-dots-1.png);
+    background-repeat: repeat;
+    width: 500%;
+    height: 788px;
+    top: 30px;
+    z-index: 999
+}
+
+@keyframes animatedBackground_dots {
+    from {
+        background-position: 0 -100%
+    }
+
+    to {
+        background-position: 100% 0
+    }
+}
