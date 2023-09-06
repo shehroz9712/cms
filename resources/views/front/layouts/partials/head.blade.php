@@ -3,16 +3,13 @@
 
     <meta charset="UTF-8">
 
-    <title>{{ $page['meta_title'] }} </title>
-
-    <link rel="shortcut icon" href="{{ uploadsDir('logo/favicon-05.png') }}">
-
-    <meta name="description" content="{{ $page['meta_desc'] }}">
-    <meta name="keywords" content="{{ $page['meta_keyword'] }}">
+    @yield('meta')
 
 
 
 
+
+    <link rel="shortcut icon" href="{{ uploadsDir('logo/' . $setting->phone) }}">
     <link rel="canonical" href="{{ url()->current() }}">
 
 

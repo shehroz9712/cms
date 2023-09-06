@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->string('image');
-            $table->string('link');
-            $table->integer('platform_id');
-            $table->tinyInteger('status')->default(1);
+            $table->string('title')->nullable();
+            $table->string('slug')->nullable();
+            $table->text('content')->nullable();
+            $table->string('image')->nullable();
+            $table->string('link')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_desc')->nullable();
+            $table->string('meta_keyword')->nullable();
+            $table->tinyInteger('status')->default(1)->nullable();
             $table->timestamps();
         });
     }

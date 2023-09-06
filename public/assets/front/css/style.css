@@ -85,6 +85,21 @@ img {
     margin: 15px 0;
 }
 
+.service-card {
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    border-radius: 10px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.blog h2 {
+    color: #952AEA;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
 .height-10 {
     height: 10px;
 }

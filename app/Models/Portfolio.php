@@ -16,4 +16,19 @@ class Portfolio extends Model
     {
         return $this->belongsTo(Service::class);
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
+    public function scopeHome($query)
+    {
+        return $query->where(['status' => 1, 'is_on_home' => 1]);
+    }
+    public function scopeMain($query)
+    {
+        return $query->where(['status' => 1, 'is_on_home' => 0]);
+    }
+   
 }

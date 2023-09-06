@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'IndexController@index')->name('index');
+
+Route::post('/contact', 'IndexController@send')->name('send');
 Route::get('about', 'IndexController@about')->name('about');
 Route::get('services', 'IndexController@services')->name('services');
 Route::get('service/{slug}', 'IndexController@service')->name('service');

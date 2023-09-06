@@ -68,7 +68,7 @@ function frontVendors($file = '')
  */
 function frontFont($file = '')
 {
-    return asset('assets/front/fonts/' . $file);
+    return asset('assets/front/' . $file);
 }
 
 /**
