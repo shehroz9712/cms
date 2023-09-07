@@ -12,4 +12,12 @@ class whyChoseUs extends Model
     {
         return $query->where('status', 1); // Adjust the column name as needed
     }
+    public function scopeChoseUs($query)
+    {
+        return $query->where(['status' => 1, 'section' => 1]); // Adjust the column name as needed
+    }
+    public function scopeCounter($query)
+    {
+        return $query->where(['status' => 1, 'section' => 0]); // Adjust the column name as needed
+    }
 }

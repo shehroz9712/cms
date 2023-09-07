@@ -1,8 +1,13 @@
 @extends('front.layouts.app')
+@section('meta')
+    <title>{{ $page->meta_title ?? '' }} </title>
+    <meta name="description" content="{{ $page->meta_desc ?? '' }}">
+    <meta name="keywords" content="{{ $page->meta_keyword ?? '' }}">
+@endsection
 @section('css')
     <style>
         .banner {
-            background-image: url("{{ frontImage('banner/Contact_Us.png') }}");
+            background-image: url("{{ frontImage('banner/' . $page->image) }}");
             background-size: cover;
             height: 480px;
         }
@@ -15,7 +20,7 @@
             <div class="container">
                 <div class="align-items-center row">
                     <div class="col-sm-12">
-                        <h1 class="fw-bold display-4" style="font-size: 72px; font-weight: bold;">Contact Us</h1>
+                        <h1 class="fw-bold display-4" style="font-size: 72px; font-weight: bold;">{{ $page->title }}</h1>
                     </div>
 
                 </div>
@@ -91,7 +96,7 @@
                     <div class="col-lg-4">
                         <div class="card card-shadow p-4 text-center">
                             <a href="">
-                                <img class="card-circle" src="{{ frontImage('icon' . $item->image) }}">
+                                <img class="card-circle" src="{{ frontImage('icon/' . $item->image) }}">
                                 <h6 class="counter-heading fs-4">{{ $item->title }}</h6>
                                 <div class="break"></div>
                                 <p class="fs-5 text-start text-white">{{ $item->content }}
@@ -117,7 +122,9 @@
                         <div>
                             <img src="{{ frontImage('icon/phone.png') }}" alt="phone-icon" class="mb-3">
                             <br>
-                            <a class="fs-5" href="tel:{{ $setting->phone }}">{{ $setting->phone }}</a>
+                            
+                            <a class="fs-5"
+                                href="tel:{{ $setting->phone }}">{{ formatPhoneNumber($setting->phone) }}</a>
                         </div>
                     </div>
                     <div class="col-lg-6 p-5">

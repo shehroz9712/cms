@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Portfolio;
 use App\Models\Service;
 use App\Models\Settings;
+use App\Models\SiteSetting;
 use App\Models\Testimonial;
 use App\Models\User;
 use App\Models\whyChoseUs;
@@ -37,11 +38,12 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
 
             $services = Service::Active()->get();
-            $why_chose_us = whyChoseUs::Active()->get();
+            $why_chose_us = whyChoseUs::ChoseUs()->get();
+            $counter = whyChoseUs::Counter()->get();
             $testimonials = Testimonial::Active()->get();
             $portfolio_home = Portfolio::home()->get();
-            $setting = Settings::find(1);
-            $view->with(['testimonials' => $testimonials, 'services' => $services, 'portfolio_home' => $portfolio_home, 'setting' => $setting, 'why_chose_us' => $why_chose_us]);
+            $setting = SiteSetting::find(1);
+            $view->with(['counter' => $counter, 'testimonials' => $testimonials, 'services' => $services, 'portfolio_home' => $portfolio_home, 'setting' => $setting, 'why_chose_us' => $why_chose_us]);
         });
     }
 }

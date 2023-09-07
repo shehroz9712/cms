@@ -1,8 +1,8 @@
 @extends('front.layouts.app')
 @section('meta')
-    <title>{{ $blog['meta_title'] ?? '' }} </title>
-    <meta name="description" content="{{ $blog['meta_desc'] ?? '' }}">
-    <meta name="keywords" content="{{ $blog['meta_keyword'] ?? '' }}">
+    <title>{{ $blog->meta_title ?? '' }} </title>
+    <meta name="description" content="{{ $blog->meta_desc ?? '' }}">
+    <meta name="keywords" content="{{ $blog->meta_keyword ?? '' }}">
 @endsection
 @section('css')
     <style>

@@ -1,13 +1,13 @@
 @extends('front.layouts.app')
 @section('meta')
-    <title>{{ $page['meta_title'] ?? '' }} </title>
-    <meta name="description" content="{{ $page['meta_desc'] ?? '' }}">
-    <meta name="keywords" content="{{ $page['meta_keyword'] ?? '' }}">
+    <title>{{ $page->meta_title ?? '' }} </title>
+    <meta name="description" content="{{ $page->meta_desc ?? '' }}">
+    <meta name="keywords" content="{{ $page->meta_keyword ?? '' }}">
 @endsection
 @section('css')
     <style>
         .banner {
-            background-image: url("{{ frontImage('banner/Services.png') }}");
+            background-image: url("{{ frontImage('banner/' . $page->image) }}");
             background-size: cover;
             height: 480px;
         }
@@ -20,7 +20,7 @@
             <div class="container">
                 <div class="align-items-center row">
                     <div class="col-sm-12">
-                        <h1 class="fw-bold display-4" style="font-size: 72px; font-weight: bold;">Our Portfolio</h1>
+                        <h1 class="fw-bold display-4" style="font-size: 72px; font-weight: bold;"> {{ $page->title }}</h1>
                         <!-- <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum voluptatibus molestias assumenda totam, quaerat consequuntur dolorum laboriosam, maxime eveniet excepturi magni rem consectetur enim nesciunt eius, similique quasi fugiat repudiandae.s</p> -->
                     </div>
 
@@ -35,19 +35,12 @@
                 <div class="col-md-11">
                     <div class="card text-center d-flex">
                         <h1 class="heading">
-                            What We Offer
+                            {{ $page->heading }}
+
                         </h1>
-                        <p class="text-justify"> We’re a full-service development company that is determined to make
-                            AI-backed digital services accessible for all businesses, including SMBs, large
-                            enterprises, start-ups, and scale-ups. We combine extensive expertise in the digital
-                            ecosystem with innovative ideas involving AI-powered digital products to drive
-                            scalability.
-                            <br>
-                            <br>
-                            We go beyond conventional methods to create a comprehensive digital footprint that
-                            effectively addresses all challenges you might be facing in your business. Our services
-                            extend to many different areas, catering to various aspects of your business operations
-                            and providing a holistic approach to the digitalization of your business.
+                        {!! $page->content !!}
+
+
                     </div>
                 </div>
             </div>

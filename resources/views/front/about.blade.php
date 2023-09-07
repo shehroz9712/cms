@@ -1,9 +1,13 @@
 @extends('front.layouts.app')
+@section('meta')
+    <title>{{ $page->meta_title ?? '' }} </title>
+    <meta name="description" content="{{ $page->meta_desc ?? '' }}">
+    <meta name="keywords" content="{{ $page->meta_keyword ?? '' }}">
+@endsection
 @section('css')
     <style>
         .banner {
-            background-image: url("{{ frontImage('banner/About Us.png') }}");
-
+            background-image: url("{{ frontImage('banner/' . $page->image) }}");
             background-size: cover;
             height: 480px;
         }
@@ -16,7 +20,7 @@
             <div class="container">
                 <div class="align-items-center row">
                     <div class="col-sm-12">
-                        <h1 class="fw-bold display-4" style="font-size: 72px; font-weight: bold;">About Us</h1>
+                        <h1 class="fw-bold display-4" style="font-size: 72px; font-weight: bold;">{{ $page->title }}</h1>
                         <!-- <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum voluptatibus molestias assumenda totam, quaerat consequuntur dolorum laboriosam, maxime eveniet excepturi magni rem consectetur enim nesciunt eius, similique quasi fugiat repudiandae.s</p> -->
                     </div>
 
@@ -57,21 +61,10 @@
                 <div class="col-md-11">
                     <div class="card text-center d-flex">
                         <h1 class="heading">
-                            ABOUT US
+                            {{ $page->heading }}
 
                         </h1>
-                        <p class="text-justify">KLEINBOTT. is a development company that was founded to propel the wheel of
-                            modern AI technology forward, making it accessible to everyone. Considering the scarcity of
-                            high-paying jobs in developing countries, our founder is determined to create high-paying job
-                            opportunities within an integrity-focused work environment. We’re helping the IT industry
-                            progress in emerging countries not only in terms of tech innovation but also ethics.
-                            <br>
-                            <br>
-                            We drive productivity by fostering a healthy work culture, prioritizing the mental and physical
-                            well-being of all our stakeholders. This way, we build meaningful relationships with team
-                            members and clients alike, while helping businesses successfully excel in their industry with
-                            our cutting-edge AI solutions.
-
+                        {!! $page->content !!}
 
 
                     </div>
@@ -180,39 +173,23 @@
     <section class=" pt-5 counter-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="card p-4 card-shadow">
-                        <a href="">
-                            <h6 class="counter-heading counter" data-target="365" data-icon=" ">1<span>K</span></h6>
-                            <div class="break"></div>
-                            <p class="fs-5 mt-5 text-white">days a year of human-to-human coordination and unparalleled
-                                client support.</p>
-                        </a>
+                @foreach ($counter as $item)
+                    <div class="col-lg-4">
+                        <div class="card p-4 card-shadow">
+                            {{-- $item->title = 365 or 95-% --}}
+                            @php
+                                $title = explode('-', $item->title);
+                            @endphp
+                            <a href="">
+                                <h6 class="counter-heading counter" data-target="{{ $title[0] ?? ' ' }}"
+                                    data-icon="{{ $title[1] ?? ' ' }}">
+                                    1<span>K</span></h6>
+                                <div class="break"></div>
+                                <p class="fs-5 mt-5 text-white">{{ $item->content }}</p>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card p-4 card-shadow">
-                        <a href="">
-                            <h6 class="counter-heading counter" data-target="15" data-icon="+">1<span>K</span></h6>
-                            <div class="break"></div>
-                            <p class="fs-5 mt-5 text-white">years of experience in delivering business growth solutions
-                                to companies worldwide.
-                            </p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card p-4 card-shadow">
-                        <a href="">
-                            <h6 class="counter-heading counter" data-target="95" data-icon="%">1<span>%</span></h6>
-                            <div class="break"></div>
-                            <p class="fs-5 mt-5 text-white">client retention rate, prioritizing providing exceptional
-                                client satisfaction above
-                                all.
-                            </p>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

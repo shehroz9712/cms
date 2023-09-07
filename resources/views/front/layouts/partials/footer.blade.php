@@ -10,7 +10,7 @@
                         </p>
                         <a class="fs-4" href="mailto:{{ $setting->email }}">{{ $setting->email }}</a>
                         <div class="break"></div>
-                        <a class="fs-6 text-white" href="tel:{{ $setting->phone }}">{{ $setting->phone }}</a>
+                        <a class="fs-6 text-white" href="tel:{{ $setting->phone }}">{{ formatPhoneNumber($setting->phone) }}</a>
                         <p class="fs-6 mt-2">{{ $setting->address }}</p>
 
                         <div class="row">
@@ -75,41 +75,41 @@
                 <div class="item">
                     <div class="social">
                         <ul class="d-flex justify-content-around p-0">
-                            @if (!empty($setting['facebook']))
+                            @if (!empty($setting->facebook))
                                 <li class="footer-social-icon">
-                                    <a href="{{ $setting['facebook'] }}">
+                                    <a href="{{ $setting->facebook }}">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
                                 </li>
                             @endif
 
-                            @if (!empty($setting['twitter']))
+                            @if (!empty($setting->twitter))
                                 <li class="footer-social-icon">
-                                    <a href="{{ $setting['twitter'] }}">
+                                    <a href="{{ $setting->twitter }}">
                                         <i class="fab fa-twitter"></i>
                                     </a>
                                 </li>
                             @endif
 
-                            @if (!empty($setting['instagram']))
+                            @if (!empty($setting->instagram))
                                 <li class="footer-social-icon">
-                                    <a href="{{ $setting['instagram'] }}">
+                                    <a href="{{ $setting->instagram }}">
                                         <i class="fab fa-instagram"></i>
                                     </a>
                                 </li>
                             @endif
 
-                            @if (!empty($setting['linkedin']))
+                            @if (!empty($setting->linkedin))
                                 <li class="footer-social-icon">
-                                    <a href="{{ $setting['linkedin'] }}">
+                                    <a href="{{ $setting->linkedin }}">
                                         <i class="fab fa-linkedin"></i>
                                     </a>
                                 </li>
                             @endif
 
-                            @if (!empty($setting['youtube']))
+                            @if (!empty($setting->youtube))
                                 <li class="footer-social-icon">
-                                    <a href="{{ $setting['youtube'] }}">
+                                    <a href="{{ $setting->youtube }}">
                                         <i class="fab fa-youtube"></i>
                                     </a>
                                 </li>

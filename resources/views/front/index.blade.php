@@ -1,8 +1,8 @@
 @extends('front.layouts.app')
 @section('meta')
-    <title>{{ $page['meta_title'] ?? '' }} </title>
-    <meta name="description" content="{{ $page['meta_desc'] ?? '' }}">
-    <meta name="keywords" content="{{ $page['meta_keyword'] ?? '' }}">
+    <title>{{ $page->meta_title ?? '' }} </title>
+    <meta name="description" content="{{ $page->meta_desc ?? '' }}">
+    <meta name="keywords" content="{{ $page->meta_keyword ?? '' }}">
 @endsection
 @section('css')
     <style>
@@ -138,43 +138,23 @@
     <section class="counter-section">
         <div class="container">
             <div class="justify-content-center row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card p-4 card-shadow">
-                        <a href="">
-                            <h6 class="counter-heading counter" data-target="365" data-icon=" ">1<span>K</span>
-                            </h6>
-                            <div class="break"></div>
-                            <p class="fs-5 mt-5 text-white">days a year of human-to-human coordination and
-                                unparalleled
-                                client support.</p>
-                        </a>
+                @foreach ($counter as $item)
+                    <div class="col-lg-4">
+                        <div class="card p-4 card-shadow">
+                            {{-- $item->title = 365 or 95-% --}}
+                            @php
+                                $title = explode('-', $item->title);
+                            @endphp
+                            <a href="">
+                                <h6 class="counter-heading counter" data-target="{{ $title[0] ?? ' ' }}"
+                                    data-icon="{{ $title[1] ?? ' ' }}">
+                                    1<span>K</span></h6>
+                                <div class="break"></div>
+                                <p class="fs-5 mt-5 text-white">{{ $item->content }}</p>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card p-4 card-shadow">
-                        <a href="">
-                            <h6 class="counter-heading counter" data-target="15" data-icon="+">1<span>K</span></h6>
-                            <div class="break"></div>
-                            <p class="fs-5 mt-5 text-white">years of experience in delivering business growth
-                                solutions
-                                to companies worldwide.
-                            </p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card p-4 card-shadow">
-                        <a href="">
-                            <h6 class="counter-heading counter" data-target="95" data-icon="%">1<span>%</span></h6>
-                            <div class="break"></div>
-                            <p class="fs-5 mt-5 text-white">client retention rate, prioritizing providing
-                                exceptional
-                                client satisfaction above
-                                all.
-                            </p>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->string('heading')->nullable();
             $table->string('slug')->nullable();
             $table->text('content')->nullable();
             $table->string('image')->nullable();

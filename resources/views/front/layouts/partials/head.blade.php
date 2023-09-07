@@ -9,7 +9,7 @@
 
 
 
-    <link rel="shortcut icon" href="{{ uploadsDir('logo/' . $setting->phone) }}">
+    <link rel="shortcut icon" href="{{ frontImage('logo/' . $setting->favicon) }}">
     <link rel="canonical" href="{{ url()->current() }}">
 
 

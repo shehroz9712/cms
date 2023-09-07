@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('image');
             $table->tinyInteger('status')->default(1);
             $table->integer('order');
+            $table->integer('section')->default(1)->comment('1-why chose us, 0-counter');
             $table->timestamps();
         });
     }

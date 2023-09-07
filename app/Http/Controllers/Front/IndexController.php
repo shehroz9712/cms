@@ -31,7 +31,7 @@ class IndexController extends Controller
 
     public function services()
     {
-        $page = Page::where('slug', 'service')->first();
+        $page = Page::where('slug', 'services')->first();
 
         return view('front.services', compact('page'));
     }

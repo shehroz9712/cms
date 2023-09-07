@@ -1,14 +1,16 @@
 @extends('front.layouts.app')
 @section('meta')
-    <title>{{ $page['meta_title'] ?? '' }} </title>
-    <meta name="description" content="{{ $page['meta_desc'] ?? '' }}">
-    <meta name="keywords" content="{{ $page['meta_keyword'] ?? '' }}">
+    <title>{{ $page->meta_title ?? '' }} </title>
+    <meta name="description" content="{{ $page->meta_desc ?? '' }}">
+    <meta name="keywords" content="{{ $page->meta_keyword ?? '' }}">
 @endsection
 @section('css')
     <style>
         .banner {
-            background-image: url("{{ frontImage('banner/About Us.png') }}");
+            background-image: url("{{ frontImage('banner/' . $page->image) }}");
             background-size: cover;
+            height: 480px;
+
         }
     </style>
 @endsection
@@ -19,7 +21,7 @@
             <div class="container">
                 <div class="align-items-center row">
                     <div class="col-sm-12">
-                        <h1 class="fw-bold display-4" style="font-size: 72px; font-weight: bold;">Blogs</h1>
+                        <h1 class="fw-bold display-4" style="font-size: 72px; font-weight: bold;">{{ $page->title }}</h1>
                     </div>
 
                 </div>
