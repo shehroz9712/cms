@@ -94,6 +94,15 @@ img {
     justify-content: center;
 }
 
+.lineBreak {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp:4 ;
+    -webkit-box-orient: vertical;
+}
+
+
 .blog h2 {
     color: #952AEA;
     font-weight: bold;

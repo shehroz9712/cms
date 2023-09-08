@@ -48,10 +48,10 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="card">
-                                    <h2 class="heading2 ">
+                                    <h2 class="heading2 lineBreak ">
                                         {{ $blog->title }}
                                     </h2>
-                                    <p>{{ Str::limit(strip_tags($blog->content), 200) }}</p>
+                                    <p class="lineBreak ">{{ Str::limit(strip_tags($blog->content), 200) }}</p>
                                     <a href="{{ route('blog', $blog->slug) }}" class="fs-4">Read more</a>
                                 </div>
                             </div>

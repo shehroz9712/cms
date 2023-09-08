@@ -13,6 +13,39 @@
     <main>
         @yield('content')
         <!-- contact form  end -->
+
+        <section>
+            <div class="container">
+                <h2 class="heading">
+                    FAQ<span style="text-transform: lowercase;">s</span>
+                </h2>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="accordion" id="accordionExample">
+                            @foreach ($faqs_result as $i => $row)
+                                <div class="accordion-item bg-theme mb-4">
+                                    <h2 class="accordion-header bg-theme" id="heading{{ $i }}">
+                                        <button class="accordion-button theme-button mb-4 bg-theme collapsed"
+                                            type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse{{ $i }}" aria-expanded="false"
+                                            aria-controls="collapse{{ $i }}">
+                                            {{ $row->question }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse{{ $i }}" class="accordion-collapse collapse"
+                                        aria-labelledby="heading{{ $i }}" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body bg-theme">
+                                            {{ $row->answer }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- testimonials start -->
         <section class="pb-0 block-sec mt-lg-3">
             <div class="container">
