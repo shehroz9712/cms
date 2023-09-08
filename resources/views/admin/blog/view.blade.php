@@ -8,29 +8,34 @@
                 <div class="card-body">
                     <table class="table table-bordered table-responsive">
                         <tr>
-                            <th>name</th>
-                            <td>{{ $testimonial->name }}</td>
+                            <th>title</th>
+                            <td>{{ $blog->title }}</td>
                         </tr>
                         <tr>
-                            <th>content</th>
-                            <td>{{ $testimonial->content }}</td>
+                            <th>slug</th>
+                            <td>{{ $blog->slug }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Thubnmail</th>
+                            <td><img src="{{ frontImage('blog/' . $blog->thumbnail) }}" alt=""></td>
                         </tr>
                         <tr>
                             <th>image</th>
-                            <td>{{ $testimonial->image }}</td>
-                        </tr>
-                        <tr>
-                            <th>platform</th>
-                            <td class="text-wrap">{!! $testimonial->platform_id !!}</td>
+                            <td><img src="{{ frontImage('blog/' . $blog->image) }}" alt=""></td>
                         </tr>
 
                         <tr>
                             <th>order</th>
-                            <td>{{ $testimonial->order }}</td>
+                            <td>{{ $blog->order }}</td>
                         </tr>
                         <tr>
                             <th>status</th>
-                            <td>{{ $testimonial->status }}</td>
+                            <td>{{ $blog->status }}</td>
+                        </tr>
+                        <tr>
+                            <th>content</th>
+                            <td class="text-wrap">{!! $blog->content !!}</td>
                         </tr>
                     </table>
 

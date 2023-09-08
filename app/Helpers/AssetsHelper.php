@@ -113,6 +113,6 @@ function image_upload($file, $path)
 {
     $extension = $file->getClientOriginalExtension();
     $filename  = 'file-' . time() . '.' . $extension;
-    $file->move($path, $filename);
+    $file->move('assets/front/image/blogs', $filename);
     return $filename;
 }

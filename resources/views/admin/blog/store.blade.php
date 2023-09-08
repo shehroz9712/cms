@@ -1,27 +1,6 @@
 @extends('admin.layouts.app')
 
 @section('css')
-    <style>
-        .drop-zone {
-            border: 2px dashed #ccc;
-            border-radius: 5px;
-            min-height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .drop-zone-text {
-            color: #777;
-        }
-
-        .image-preview img {
-            max-width: 100%;
-            max-height: 300px;
-            margin-top: 10px;
-        }
-    </style>
 @endsection
 @section('content')
     <div class="row justify-content-center">
@@ -35,26 +14,6 @@
                     <form method="POST" action="{{ route('blogs.store') }}" enctype="multipart/form-data">
                         @csrf
 
-
-
-
-                        <div class="col-md-6 mx-auto">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Drag & Drop File Upload</h5>
-                                    <div class="form-group">
-                                        <label for="fileInput">Choose File</label>
-                                        <input type="file" id="fileInput" class="form-control" accept="image/*">
-                                    </div>
-                                    <div class="drop-zone">
-                                        <div class="drop-zone-text">Drag & Drop files here or click to upload</div>
-                                    </div>
-                                    <div class="image-preview mt-3">
-                                        <!-- Preview images will be displayed here -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <!-- Title -->
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -152,4 +111,22 @@
 @endsection
 
 @section('js')
+    <script>
+       function generateSlug() {
+        // Get the title input field's value
+        var title = document.getElementById('title').value;
+
+        // Replace special characters and spaces with hyphens, and convert to lowercase
+        var slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+        // Remove leading and trailing hyphens
+        slug = slug.replace(/^-+|-+$/g, '');
+
+        // Set the slug input field's value
+        document.getElementById('slug').value = slug;
+    }
+
+    // Add an event listener to trigger the slug generation when the title input changes
+    document.getElementById('title').addEventListener('input', generateSlug);
+    </script>
 @endsection

@@ -57,14 +57,18 @@ class BlogController extends Controller
      */
     public function store(BlogRequest $request)
     {
+        $data = [
 
-
-        $imagePath = $request->file('image')->store('public/blog');
-
-
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'content' => $request->content,
+            'status' => $request->status,
+            'order' => $request->order,
+        ];
         if ($request->hasfile('thumbnail')) {
             $file = $request->file('thumbnail');
             $getImage = image_upload($file, frontImage('blog/'));
+
             $data['thumbnail'] = $getImage;
         } else {
             $data['thumbnail'] = 'no-image.jpg';
@@ -76,17 +80,7 @@ class BlogController extends Controller
         } else {
             $data['image'] = 'no-image.jpg';
         }
-
-        $data = [
-
-            'service_id' => $request->service_id,
-            'status' => $request->status,
-            'is_on_home' => $request->is_on_home,
-            'platform_id`,' => $request->platform_id,
-            'order' => $request->order,
-        ];
-
-        Blog::created($data);
+        Blog::create($data);
 
 
         return redirect()->route('blogs.index')
@@ -103,7 +97,7 @@ class BlogController extends Controller
     {
         $blog = Blog::find($id);
 
-        return view('blog.show', compact('blog'));
+        return view('admin.blog.view', compact('blog'));
     }
 
     /**
@@ -116,7 +110,7 @@ class BlogController extends Controller
     {
         $blog = Blog::find($id);
 
-        return view('blog.edit', compact('blog'));
+        return view('admin.blog.edit', compact('blog'));
     }
 
     /**
