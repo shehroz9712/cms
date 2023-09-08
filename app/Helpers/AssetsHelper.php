@@ -106,3 +106,13 @@ function adminCss($file = '')
 {
     return asset('assets/admin/css/' . $file);
 }
+
+
+
+function image_upload($file, $path)
+{
+    $extension = $file->getClientOriginalExtension();
+    $filename  = 'file-' . time() . '.' . $extension;
+    $file->move($path, $filename);
+    return $filename;
+}

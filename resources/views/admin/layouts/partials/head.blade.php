@@ -31,5 +31,12 @@
         th {
             text-transform: capitalize;
         }
+
+        .table td img,
+        .jsgrid .jsgrid-table td img {
+            width: 100px;
+            height: auto;
+            border-radius: unset;
+        }
     </style>
 </head>

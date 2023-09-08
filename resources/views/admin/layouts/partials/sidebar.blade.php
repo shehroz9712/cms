@@ -2,7 +2,7 @@
     <ul class="nav">
 
         <li class="nav-item">
-            <a class="nav-link" href="https://kleinbott.com/">
+            <a class="nav-link" href="{{ route('index') }}" target="blank">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Website</span>
             </a>
@@ -35,16 +35,17 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('portfolio.index') }}">
+            <a class="nav-link" href="{{ route('portfolios.index') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Portfolio </span>
             </a>
         </li>
 
+
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('portfolio.index') }}">
+            <a class="nav-link" href="{{ route('blogs.index') }}">
                 <i class="icon-grid menu-icon"></i>
-                <span class="menu-title">Portfolio </span>
+                <span class="menu-title">Blogs </span>
             </a>
         </li>
 

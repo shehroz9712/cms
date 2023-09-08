@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PortfolioRequest;
-use App\Models\Portfolio;
-use App\Models\Service;
+use App\Http\Requests\BlogRequest;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use DataTables;
-use Image;
 
-class PortfolioController extends Controller
+class BlogController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -24,18 +23,18 @@ class PortfolioController extends Controller
 
 
         if ($request->ajax()) {
-            $portfolios = Portfolio::with('service')->get();
-            return DataTables::of($portfolios)
+            $blogs = Blog::all();
+            return DataTables::of($blogs)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('portfolio.show', ['portfolio' => $row->id]) . '" class="edit btn btn-primary btn-sm mr-3">View</a>';
-                    $btn2 = '<a href="' . route('portfolio.edit', ['portfolio' => $row->id]) . '" class="edit btn btn-primary btn-sm">Edit</a>';
+                    $btn = '<a href="' . route('blogs.show', ['blog' => $row->id]) . '" class="edit btn btn-primary btn-sm mr-3">View</a>';
+                    $btn2 = '<a href="' . route('blogs.edit', ['blog' => $row->id]) . '" class="edit btn btn-primary btn-sm">Edit</a>';
                     return $btn . $btn2;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.portfolio.index');
+        return view('admin.blog.index');
     }
 
     /**
@@ -45,10 +44,9 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        $services = Service::all();
 
 
-        return view('admin.portfolio.store', compact('services'));
+        return view('admin.blog.store');
     }
 
     /**
@@ -57,32 +55,42 @@ class PortfolioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PortfolioRequest $request)
+    public function store(BlogRequest $request)
     {
 
 
-        // Create a new service image record
-        $request->validate([]);
+        $imagePath = $request->file('image')->store('public/blog');
 
-        // Handle file upload and store it
-        $imagePath = $request->file('image')->store('public/portfolio');
 
+        if ($request->hasfile('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $getImage = image_upload($file, frontImage('blog/'));
+            $data['thumbnail'] = $getImage;
+        } else {
+            $data['thumbnail'] = 'no-image.jpg';
+        }
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $getImage = image_upload($file, frontImage('blog/'));
+            $data['image'] = $getImage;
+        } else {
+            $data['image'] = 'no-image.jpg';
+        }
 
         $data = [
 
             'service_id' => $request->service_id,
-            'image' =>  $imagePath,
             'status' => $request->status,
             'is_on_home' => $request->is_on_home,
             'platform_id`,' => $request->platform_id,
             'order' => $request->order,
         ];
 
-        Portfolio::created($data);
+        Blog::created($data);
 
 
-        return redirect()->route('portfolios.index')
-            ->with('success', 'Portfolio created successfully.');
+        return redirect()->route('blogs.index')
+            ->with('success', 'Blog created successfully.');
     }
 
     /**
@@ -93,9 +101,9 @@ class PortfolioController extends Controller
      */
     public function show($id)
     {
-        $portfolio = Portfolio::find($id);
+        $blog = Blog::find($id);
 
-        return view('portfolio.show', compact('portfolio'));
+        return view('blog.show', compact('blog'));
     }
 
     /**
@@ -106,9 +114,9 @@ class PortfolioController extends Controller
      */
     public function edit($id)
     {
-        $portfolio = Portfolio::find($id);
+        $blog = Blog::find($id);
 
-        return view('portfolio.edit', compact('portfolio'));
+        return view('blog.edit', compact('blog'));
     }
 
     /**
@@ -121,12 +129,12 @@ class PortfolioController extends Controller
     public function update(Request $request, $id)
     {
 
-        $portfolio = Portfolio::find($id);
+        $blog = Blog::find($id);
 
 
-        $portfolio->update($request->all());
+        $blog->update($request->all());
 
-        return redirect()->route('portfolios.index')->with('success', 'portfolio updated successfully.');
+        return redirect()->route('blogs.index')->with('success', 'blog updated successfully.');
     }
 
     /**
@@ -137,8 +145,8 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        $portfolio = Portfolio::find($id);
+        $blog = Blog::find($id);
 
-        return redirect()->route('portfolios.index')->with('success', 'portfolio deleted successfully.');
+        return redirect()->route('blogs.index')->with('success', 'blog deleted successfully.');
     }
 }

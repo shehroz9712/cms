@@ -40,8 +40,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
     Route::resource('users', 'AdminHomeController');
     Route::resource('services', 'ServiceController');
-    Route::resource('portfolio', 'PortfolioController');
+    Route::resource('portfolios', 'PortfolioController');
     Route::resource('faqs', 'FaqController');
+    Route::resource('blogs', 'BlogController');
 
     Route::resource('testimonials', 'TestimonialController');
 
