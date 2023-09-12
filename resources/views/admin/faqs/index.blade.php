@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <a href="{{ route('faqs.create') }}" class="btn btn-primary mb-4" style="float: right;">Create
                             Faq</a>
-                        <table class="table table-bordered table-responsive  data-table">
+                        <table class="table table-bordered table-responsive  w-100 data-table">
                             <thead>
                                 <tr>
                                     <th>service_id</th>

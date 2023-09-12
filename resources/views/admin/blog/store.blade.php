@@ -112,21 +112,21 @@
 
 @section('js')
     <script>
-       function generateSlug() {
-        // Get the title input field's value
-        var title = document.getElementById('title').value;
+        function generateSlug() {
+            // Get the title input field's value
+            var title = document.getElementById('title').value;
 
-        // Replace special characters and spaces with hyphens, and convert to lowercase
-        var slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            // Replace special characters and spaces with hyphens, and convert to lowercase
+            var slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
-        // Remove leading and trailing hyphens
-        slug = slug.replace(/^-+|-+$/g, '');
+            // Remove leading and trailing hyphens
+            slug = slug.replace(/^-+|-+$/g, '');
 
-        // Set the slug input field's value
-        document.getElementById('slug').value = slug;
-    }
+            // Set the slug input field's value
+            document.getElementById('slug').value = slug;
+        }
 
-    // Add an event listener to trigger the slug generation when the title input changes
-    document.getElementById('title').addEventListener('input', generateSlug);
+        // Add an event listener to trigger the slug generation when the title input changes
+        document.getElementById('title').addEventListener('input', generateSlug);
     </script>
 @endsection

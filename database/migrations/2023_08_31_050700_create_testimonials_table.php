@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('content');
-            $table->string('image')->default('no-image.png');
+            $table->string('image');
             $table->tinyInteger('status')->default(1);
             $table->integer('platform_id');
             $table->integer('order');

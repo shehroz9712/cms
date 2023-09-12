@@ -19,18 +19,25 @@ class PortfolioController extends Controller
      */
     public function index(Request $request)
     {
+        $portfolios = Portfolio::with('service')->get();
 
 
-
-
+        print_r($portfolios);
+die;
         if ($request->ajax()) {
             $portfolios = Portfolio::with('service')->get();
             return DataTables::of($portfolios)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('portfolio.show', ['portfolio' => $row->id]) . '" class="edit btn btn-primary btn-sm mr-3">View</a>';
-                    $btn2 = '<a href="' . route('portfolio.edit', ['portfolio' => $row->id]) . '" class="edit btn btn-primary btn-sm">Edit</a>';
-                    return $btn . $btn2;
+                    $btn = '<a href="' . route('portfolios.show', ['portfolio' => $row->id]) . '" class="edit btn btn-primary btn-sm mr-3">View</a>';
+                    $btn2 = '<a href="' . route('portfolios.edit', ['portfolio' => $row->id]) . '" class="edit btn btn-primary btn-sm">Edit</a>';
+                    // Delete button with a form for sending DELETE request
+                    $deleteBtn = '<form action="' . route('portfolios.destroy', ['portfolio' => $row->id]) . '" method="POST" class="d-inline">
+                        ' . csrf_field() . '
+                        ' . method_field('DELETE') . '
+                        <button type="submit" class="edit btn btn-danger btn-sm">Delete</button>
+                    </form>';
+                    return $btn . $btn2 . $deleteBtn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -62,24 +69,19 @@ class PortfolioController extends Controller
 
 
         // Create a new service image record
-        $request->validate([]);
 
-        // Handle file upload and store it
-        $imagePath = $request->file('image')->store('public/portfolio');
 
 
         $data = [
 
             'service_id' => $request->service_id,
-            'image' =>  $imagePath,
             'status' => $request->status,
             'is_on_home' => $request->is_on_home,
             'platform_id`,' => $request->platform_id,
             'order' => $request->order,
         ];
-
-        Portfolio::created($data);
-
+        $data['image']  = image_upload($request->file('image'), 'portfolio/');
+        Portfolio::create($data);
 
         return redirect()->route('portfolios.index')
             ->with('success', 'Portfolio created successfully.');
@@ -138,6 +140,7 @@ class PortfolioController extends Controller
     public function destroy($id)
     {
         $portfolio = Portfolio::find($id);
+        $portfolio->delete();
 
         return redirect()->route('portfolios.index')->with('success', 'portfolio deleted successfully.');
     }

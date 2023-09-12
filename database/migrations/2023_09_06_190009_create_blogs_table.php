@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->text('content');
             $table->string('image');
             $table->string('thumbnail');
+            $table->text('content');
             $table->tinyInteger('status')->default(1);
             $table->integer('order');
             $table->timestamps();

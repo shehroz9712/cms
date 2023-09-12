@@ -11,7 +11,7 @@
 
                 <div class="card-body">
 
-                    <form action="{{ route('portfolio.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('portfolios.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="service_id">Service</label>

@@ -65,21 +65,10 @@ class BlogController extends Controller
             'status' => $request->status,
             'order' => $request->order,
         ];
-        if ($request->hasfile('thumbnail')) {
-            $file = $request->file('thumbnail');
-            $getImage = image_upload($file, frontImage('blog/'));
 
-            $data['thumbnail'] = $getImage;
-        } else {
-            $data['thumbnail'] = 'no-image.jpg';
-        }
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
-            $getImage = image_upload($file, frontImage('blog/'));
-            $data['image'] = $getImage;
-        } else {
-            $data['image'] = 'no-image.jpg';
-        }
+        $data['thumbnail']  = image_upload($request->file('thumbnail'), 'blog/');
+        $data['image']  = image_upload($request->file('image'), 'blog/');
+
         Blog::create($data);
 
 

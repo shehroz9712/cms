@@ -12,6 +12,7 @@
                         <a href="{{ route('services.create') }}" class="btn btn-primary mb-4" style="float: right;">Create
                             Service</a>
                         <table class="table table-bordered table-responsive  w-100 data-table">
+
                             <thead>
                                 <tr>
                                     <th>Title</th>

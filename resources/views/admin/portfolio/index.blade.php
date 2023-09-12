@@ -9,7 +9,7 @@
                     <div class="card-header">Portfolio Data</div>
 
                     <div class="card-body">
-                        <a href="{{ route('portfolio.create') }}" class="btn btn-primary mb-4" style="float: right;">Create
+                        <a href="{{ route('portfolios.create') }}" class="btn btn-primary mb-4" style="float: right;">Create
                             Portfolio</a>
                         <table class="table table-bordered table-responsive  w-100 data-table">
                             <thead>
@@ -35,7 +35,7 @@
                                     processing: true,
                                     serverSide: true,
                                     responsive: true, // Enable DataTables Responsive extension
-                                    ajax: "{{ route('portfolio.index') }}",
+                                    ajax: "{{ route('portfolios.index') }}",
                                     columns: [{
                                             data: 'id',
                                             name: 'id'
@@ -44,11 +44,13 @@
                                             data: 'service.title',
                                             name: 'service.title'
                                         },
+
                                         {
                                             data: 'image',
                                             name: 'image',
                                             render: function(data, type, full, meta) {
-                                                return '<img src="' + data + '" alt="Image" width="100">';
+                                                var imageUrl = "{{ frontImage('portfolio/') }}" + '/' + data;
+                                                return '<img src="' + imageUrl + '" alt="Image" >';
                                             },
                                         },
                                         {

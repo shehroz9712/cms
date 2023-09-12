@@ -111,8 +111,12 @@ function adminCss($file = '')
 
 function image_upload($file, $path)
 {
-    $extension = $file->getClientOriginalExtension();
-    $filename  = 'file-' . time() . '.' . $extension;
-    $file->move('assets/front/image/blogs', $filename);
-    return $filename;
+    if ($file->isValid()) {
+        $extension = $file->getClientOriginalExtension();
+        $filename  = 'file-' . time() . '.' . $extension;
+        $file->move('assets/front/image/' . $path, $filename);
+        return $filename;
+    } else {
+        return 'no-image.jpg';
+    }
 }

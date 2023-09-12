@@ -56,7 +56,14 @@
                         },
                         {
                             data: 'status',
-                            name: 'status'
+                            name: 'status',
+                            render: function(data, type, row) {
+                                if (data == 1) {
+                                    return '<div class="alert alert-success">Active</div>';
+                                } else {
+                                    return '<div class="alert alert-danger">Inactive</div>';
+                                }
+                            }
                         },
                         {
                             data: 'order',

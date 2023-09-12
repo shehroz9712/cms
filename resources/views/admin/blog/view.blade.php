@@ -31,7 +31,13 @@
                         </tr>
                         <tr>
                             <th>status</th>
-                            <td>{{ $blog->status }}</td>
+                            <td>
+                                @if ($blog->status == 1)
+                                    <div class="alert alert-success">Active</div>
+                                @else
+                                    <div class="alert alert-danger">Inactive</div>
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>content</th>

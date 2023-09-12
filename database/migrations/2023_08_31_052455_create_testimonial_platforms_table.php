@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('testimonial_platforms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('content');
-            $table->text('image');
+            $table->string('link');
+            $table->string('image');
+            $table->string('code');
             $table->tinyInteger('status')->default(1);
             $table->integer('order');
             $table->timestamps();
