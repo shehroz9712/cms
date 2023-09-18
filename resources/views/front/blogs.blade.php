@@ -49,7 +49,11 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <h2 class="heading2 lineBreak ">
-                                        {{ $blog->title }}
+                                        <a href="{{ route('blog', $blog->slug) }}">
+
+                                            {{ $blog->title }}
+                                        </a>
+
                                     </h2>
                                     <p class="lineBreak ">{{ Str::limit(strip_tags($blog->content), 200) }}</p>
                                     <a href="{{ route('blog', $blog->slug) }}" class="fs-4">Read more</a>
