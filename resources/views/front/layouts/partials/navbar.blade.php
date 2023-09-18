@@ -49,13 +49,15 @@
                     <a class="nav-link {{ request()->is('blogs*') || request()->is('blog*') ? 'active' : '' }}"
                         href="{{ route('blogs') }}">Blog</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}"
                         href="{{ route('contact') }}">Contact</a>
-                </li>
+                </li> --}}
             </ul>
 
-            <a href="https://corporate.kleinbott.com/" class="btn theme-button">Corporate</a>
+            {{-- <a href="https://corporate.kleinbott.com/" class="btn theme-button">Corporate</a> --}}
+            <a href="{{ route('contact') }}" class="btn theme-button">Contact Us</a>
+
         </div>
 
     </div>
