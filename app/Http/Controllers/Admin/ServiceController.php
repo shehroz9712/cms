@@ -44,8 +44,6 @@ class ServiceController extends Controller
         $request->validate([
             'title' => 'nullable|string|max:255',
             'slug' => 'nullable|string|max:255',
-            'icon' => 'nullable|string|max:255',
-            'bg_image' => 'nullable|string|max:255',
             'we_offer_heading' => 'nullable|string|max:255',
             'meta_keyword' => 'nullable|string|max:255',
             'meta_desc' => 'nullable|string',

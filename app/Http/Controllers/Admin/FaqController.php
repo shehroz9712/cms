@@ -124,10 +124,9 @@ class FaqController extends Controller
             'answer' => 'required',
         ]);
 
-
         $data = [
 
-            'service_id' => $request->service_id,
+            'service_id' => $request->page_id ? 0 : $request->service_id,
             'question' => $request->question,
             'answer' => $request->answer,
             'page_id' => $request->page_id,

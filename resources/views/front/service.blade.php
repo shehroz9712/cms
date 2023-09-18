@@ -7,7 +7,7 @@
 @section('css')
     <style>
         .banner {
-            background-image: url("{{ frontImage('banner/' . $service->bg_image) }}");
+            background-image: url("{{ frontImage('services/' . $service->bg_image) }}");
             background-size: cover;
         }
     </style>
@@ -87,8 +87,8 @@
                             @php
                                 $dynamicContent = $inner_service->para;
                                 $strippedContent = strip_tags($dynamicContent);
-                                $words = str_word_count($strippedContent, 1);
-                                $limitedContent = implode(' ', array_slice($words, 0, 50));
+                                $wordArray = preg_split('/\s+/', $strippedContent);
+                                $limitedContent = implode(' ', array_slice($wordArray, 0, 50));
                                 $fullContent = $dynamicContent;
                             @endphp
 

@@ -58,23 +58,28 @@
                     <ul class="border-0 justify-content-center nav nav-tabs portfolio position-relative" id="myTabs"
                         role="tablist">
                         @php $count = 1; @endphp
-                        @foreach ($portfolios as $row)
-                            <li class="mb-4 nav-item" role="presentation">
-                                <button
-                                    class="nav-link {{ $count === 1 ? 'active' : '' }} fs-5 bg-transparent border-0 nav-link"
-                                    id="tab{{ $row->id }}" data-bs-toggle="tab"
-                                    data-bs-target="#panel{{ $row->id }}" type="button" role="tab"
-                                    aria-controls="panel{{ $row->id }}"
-                                    aria-selected="{{ $count === 1 ? 'true' : 'false' }}">
-                                    @if ($count != 1)
-                                        <img src="{{ frontImage('portfolio/line.png') }}" alt=""
-                                            style="margin-right: 20px;">
-                                    @endif
-                                    {{ $row->title }}
-                                </button>
-                            </li>
-                            @php $count++; @endphp
-                        @endforeach
+                        @if (count($portfolios) != 0)
+                            @foreach ($portfolios as $row)
+                                <li class="mb-4 nav-item" role="presentation">
+                                    <button
+                                        class="nav-link {{ $count === 1 ? 'active' : '' }} fs-5 bg-transparent border-0 nav-link"
+                                        id="tab{{ $row->id }}" data-bs-toggle="tab"
+                                        data-bs-target="#panel{{ $row->id }}" type="button" role="tab"
+                                        aria-controls="panel{{ $row->id }}"
+                                        aria-selected="{{ $count === 1 ? 'true' : 'false' }}">
+                                        @if ($count != 1)
+                                            <img src="{{ frontImage('portfolio/line.png') }}" alt=""
+                                                style="margin-right: 20px;">
+                                        @endif
+                                        {{ $row->title }}
+                                    </button>
+                                </li>
+                                @php $count++; @endphp
+                            @endforeach
+                        @else
+                            <h4>no portfolio found</h4>
+                        @endif
+
                     </ul>
                 </div>
                 <div class="col-lg-12">

@@ -65,7 +65,7 @@
                                 <div class="form-group">
                                     <label for="service_id">Service</label>
                                     <select class="form-select @error('service_id') is-invalid @enderror" id="service_id"
-                                        name="service_id" required>
+                                        name="service_id" >
                                         <option value="">Select service</option>
                                         @foreach ($services as $service)
                                             <option value="{{ $service->id }}">{{ $service->title }}</option>

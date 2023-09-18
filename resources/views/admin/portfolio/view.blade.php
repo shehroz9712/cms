@@ -1,23 +1,54 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">New update !</h4>
-                    <p>Forget Password functionality is working. </p>
-                    <hr>
-                    <p class="mb-0">Now, you can reset your password.</p>
-                </div>
-                <div class="card">
-                    <div class="card-header">Welcome {{ Auth::user()->username }}</div>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">View Portfolio</div>
+                <div class="card-body">
+                    <table class="table table-bordered table-responsive">
+                        <tr>
+                            <th>service</th>
+                            <td>{{ $portfolio->service->title }}</td>
+                        </tr>
+                        <tr>
+                            <th>image</th>
+                            <td><img src="{{ frontImage('portfolio/' . $portfolio->image) }}" alt=""></td>
+                        </tr>
+
+                        <tr>
+                            <th>Show on home </th>
+
+                            <td>
+                                @if ($portfolio->is_on_home == 1)
+                                    show on desktop
+                                @else
+                                    not show
+                                @endif
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>order</th>
+                            <td>{{ $portfolio->order }}</td>
+                        </tr>
+                        <tr>
+                            <th>status</th>
+                            <td>
+                                @if ($portfolio->status == 1)
+                                    <div class="alert alert-success">Active</div>
+                                @else
+                                    <div class="alert alert-danger">Inactive</div>
+                                @endif
+                            </td>
+                        </tr>
+                    </table>
 
 
 
                 </div>
-
-                {{-- @dd($attendance_all); --}}
             </div>
         </div>
     </div>

@@ -49,7 +49,7 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        $services = Service::all();
+        $services = Service::active()->get();
 
 
         return view('admin.portfolio.store', compact('services'));
@@ -92,9 +92,9 @@ class PortfolioController extends Controller
      */
     public function show($id)
     {
-        $portfolio = Portfolio::find($id);
+        $portfolio = Portfolio::with('service')->find($id);
 
-        return view('portfolio.show', compact('portfolio'));
+        return view('admin.portfolio.view', compact('portfolio'));
     }
 
     /**
@@ -106,8 +106,9 @@ class PortfolioController extends Controller
     public function edit($id)
     {
         $portfolio = Portfolio::find($id);
+        $services = Service::active()->get();
 
-        return view('portfolio.edit', compact('portfolio'));
+        return view('admin.portfolio.edit', compact('portfolio', 'services'));
     }
 
     /**

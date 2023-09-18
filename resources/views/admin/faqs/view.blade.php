@@ -31,13 +31,18 @@
                         </tr>
                         <tr>
                             <th>status</th>
-                            <td>{{ $faq->status }}</td>
+                            <td>
+                                @if ($faq->status == 1)
+                                    <div class="alert alert-success">Active</div>
+                                @else
+                                    <div class="alert alert-danger">Inactive</div>
+                                @endif
+                            </td>
                         </tr>
                     </table>
 
 
 
-                    <table></table>
                 </div>
             </div>
         </div>

@@ -30,7 +30,13 @@
                         </tr>
                         <tr>
                             <th>status</th>
-                            <td>{{ $testimonial->status }}</td>
+                            <td>
+                                @if ($testimonial->status == 1)
+                                    <div class="alert alert-success">Active</div>
+                                @else
+                                    <div class="alert alert-danger">Inactive</div>
+                                @endif
+                            </td>
                         </tr>
                     </table>
 

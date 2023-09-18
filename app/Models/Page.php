@@ -14,7 +14,7 @@ class Page extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('status', 1)->orderBy('order', 'asc'); // Adjust the column name as needed
+        return $query->where('status', 1); // Adjust the column name as needed
     }
     protected $dates = ['created_at', 'updated_at'];
 

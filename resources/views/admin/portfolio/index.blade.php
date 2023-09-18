@@ -17,7 +17,6 @@
                                     <th>ID</th>
                                     <th>service ID</th>
                                     <th>Image</th>
-                                    <th>Status</th>
                                     <th>Is on Home</th>
                                     <th>status</th>
                                     <th>Order</th>
@@ -54,13 +53,17 @@
                                                 return '<img src="' + imageUrl + '" alt="Image" >';
                                             },
                                         },
-                                        {
-                                            data: 'status',
-                                            name: 'status'
-                                        },
+
                                         {
                                             data: 'is_on_home',
-                                            name: 'is_on_home'
+                                            name: 'is_on_home',
+                                            render: function(data, type, row) {
+                                                if (data == 1) {
+                                                    return 'show on desktop';
+                                                } else {
+                                                    return 'not show';
+                                                }
+                                            }
                                         },
 
 
