@@ -58,8 +58,8 @@
                     <ul class="border-0 justify-content-center nav nav-tabs portfolio position-relative" id="myTabs"
                         role="tablist">
                         @php $count = 1; @endphp
-                        @if (count($portfolios) != 0)
-                            @foreach ($portfolios as $row)
+                        @foreach ($portfolios as $row)
+                            @if (count($row->portfolios) > 0)
                                 <li class="mb-4 nav-item" role="presentation">
                                     <button
                                         class="nav-link {{ $count === 1 ? 'active' : '' }} fs-5 bg-transparent border-0 nav-link"
@@ -74,11 +74,11 @@
                                         {{ $row->title }}
                                     </button>
                                 </li>
-                                @php $count++; @endphp
-                            @endforeach
-                        @else
-                            <h4>no portfolio found</h4>
-                        @endif
+                            @endif
+
+                            @php $count++; @endphp
+                        @endforeach
+
 
                     </ul>
                 </div>
@@ -97,6 +97,7 @@
                                     @endforeach
                                 </div>
                             </div>
+
                             @php $count++; @endphp
                         @endforeach
                     </div>
