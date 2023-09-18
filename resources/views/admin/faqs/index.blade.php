@@ -14,10 +14,10 @@
                         <table class="table table-bordered table-responsive  w-100 data-table">
                             <thead>
                                 <tr>
-                                    <th>service_id</th>
+                                    <th>service</th>
                                     <th>question</th>
                                     <th>answer</th>
-                                    <th>page_id</th>
+                                    <th>page</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
                                     <th>Action</th>
@@ -41,8 +41,15 @@
                 ajax: "{{ route('faqs.index') }}",
 
                 columns: [{
-                        data: 'service_id',
-                        name: 'service_id'
+                        data: 'service.title',
+                        name: 'service.title',
+                        render: function(data, type, full, meta) {
+                            if (data) {
+                                return data;
+                            } else {
+                                return 'N/A';
+                            }
+                        }
                     },
                     {
                         data: 'question',
@@ -53,8 +60,15 @@
                         name: 'answer'
                     },
                     {
-                        data: 'page_id',
-                        name: 'page_id'
+                        data: 'page.title',
+                        name: 'page.title',
+                        render: function(data, type, full, meta) {
+                            if (data) {
+                                return data;
+                            } else {
+                                return 'N/A';
+                            }
+                        }
                     },
 
                     {

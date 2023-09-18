@@ -76,12 +76,10 @@
             <div class="row justify-content-center">
                 @foreach ($services as $row)
                     @php
-                        $icon = $row->icon ? $row->icon : 'Layer_1.png';
-                        $imagePath = frontImage('services/' . $icon);
                     @endphp
                     <div class="col-lg-3 my-3">
                         <div class="card card-shadow p-4 text-center service-card"
-                            style="background-image:  url('{{ $imagePath }}')!important;">
+                            style="background-image:  url('{{ frontImage('services/' . $row->icon) }}')!important;">
                             <a href="{{ route('service', $row->slug) }}">
                                 <h6 class="counter-heading fs-2 text-white">{{ $row->title }}</h6>
                             </a>

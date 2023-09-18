@@ -10,6 +10,8 @@ use App\Models\Portfolio;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Spatie\PdfToImage\Pdf;
+use Spatie\PdfToImage\Exceptions\PdfDoesNotExist;
 
 class IndexController extends Controller
 {
@@ -65,7 +67,10 @@ class IndexController extends Controller
     public function case_studies()
     {
         $page = Page::where('slug', 'case-studies')->first();
+
         $faqs_result = Faq::where('page_id', $page->id)->get();
+
+
 
         return view('front.case-studies', compact('page', 'faqs_result'));
     }

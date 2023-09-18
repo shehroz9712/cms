@@ -50,7 +50,7 @@
                                         <option value="0">Inner Service</option>
 
                                         @foreach ($pages as $page)
-                                            <option value="{{ $page->id }}">{{ $page->name }}</option>
+                                            <option value="{{ $page->id }}">{{ $page->title }}</option>
                                         @endforeach
                                     </select>
                                     @error('page_id')

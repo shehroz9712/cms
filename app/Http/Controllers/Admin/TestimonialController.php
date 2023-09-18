@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TestimonialsRequest;
 use App\Models\Testimonial;
 use App\Models\TestimonialPlatform;
 use Illuminate\Http\Request;
@@ -21,13 +22,18 @@ class TestimonialController extends Controller
 
 
         if ($request->ajax()) {
-            $testimonials = Testimonial::all();
+            $testimonials = Testimonial::with('platform')->get();
             return DataTables::of($testimonials)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('testimonials.show', ['testimonial' => $row->id]) . '" class="edit btn btn-primary btn-sm mr-3">View</a>';
-                    $btn2 = '<a href="' . route('testimonials.edit', ['testimonial' => $row->id]) . '" class="edit btn btn-primary btn-sm">Edit</a>';
-                    return $btn . $btn2;
+                    $editBtn = '<a href="' . route('testimonials.show', ['testimonial' => $row->id]) . '" class=" text-primary"><i class="fa fa-eye"></i></a>';
+                    $viewBtn = '<a href="' . route('testimonials.edit', ['testimonial' => $row->id]) . '" class=" text-primary mr-2"><i class="fa fa-pen"></i></a>';
+                    $deleteBtn = '<form action="' . route('testimonials.destroy', ['testimonial' => $row->id]) . '" method="POST" class="d-inline">
+                    ' . csrf_field() . '
+                    ' . method_field('DELETE') . '
+                    <button type="submit" class="text-danger" style="border: none; background-color: transparent; cursor: pointer;"><i class="fa fa-trash-alt"></i></button>
+                </form>';
+                    return $viewBtn . $editBtn . $deleteBtn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -53,26 +59,23 @@ class TestimonialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TestimonialsRequest $request)
     {
 
-        $request->validate([
-            'name' => 'required',
-            'content' => 'required',
-        ]);
 
 
         $data = [
 
             'name' => $request->name,
             'content' => $request->content,
-            'platform_id`,' => $request->platform_id,
-            'image' => $request->image,
+            'platform_id' => $request->platform_id,
             'order' => $request->order,
             'status' => $request->status,
         ];
+        $data['image']  = image_upload($request->file('image'), 'testimonials/');
+
         // Create a new testimonial image record
-        Testimonial::create($request->all());
+        Testimonial::create($data);
 
         return redirect()->route('testimonials.index')
             ->with('success', 'Testimonial created successfully.');
@@ -86,7 +89,7 @@ class TestimonialController extends Controller
      */
     public function show($id)
     {
-        $testimonial = Testimonial::find($id);
+        $testimonial = Testimonial::with('platform')->find($id);
 
         return view('admin.testimonial.view', compact('testimonial'));
     }
@@ -112,31 +115,27 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TestimonialsRequest $request, $id)
     {
 
-
-        $request->validate([
-            'name' => 'required',
-            'content' => 'required',
-        ]);
 
 
         $data = [
 
             'name' => $request->name,
             'content' => $request->content,
-            'platform_id`,' => $request->platform_id,
-            'image' => $request->image,
+            'platform_id' => $request->platform_id,
             'order' => $request->order,
             'status' => $request->status,
         ];
+        $data['image']  = image_upload($request->file('image'), 'testimonials/');
+
         $testimonial = Testimonial::find($id);
 
 
         $testimonial->update($data);
 
-        return redirect()->route('testimonial.index')->with('success', 'testimonial updated successfully.');
+        return redirect()->route('testimonials.index')->with('success', 'testimonial updated successfully.');
     }
 
     /**
@@ -148,7 +147,8 @@ class TestimonialController extends Controller
     public function destroy($id)
     {
         $testimonial = Testimonial::find($id);
+        $testimonial->delete();
 
-        return redirect()->route('testimonial.index')->with('success', 'testimonial deleted successfully.');
+        return redirect()->route('testimonials.index')->with('success', 'testimonial deleted successfully.');
     }
 }

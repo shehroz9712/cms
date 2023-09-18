@@ -24,7 +24,6 @@ class PortfolioRequest extends FormRequest
     public function rules()
     {
         return [
-            'service_id' => 'required|exists:services,id',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'status' => 'required|boolean',
             'is_on_home' => 'required|boolean',

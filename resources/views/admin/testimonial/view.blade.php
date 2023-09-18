@@ -17,11 +17,11 @@
                         </tr>
                         <tr>
                             <th>image</th>
-                            <td>{{ $testimonial->image }}</td>
+                            <td><img src="{{ frontImage('testimonials/' . $testimonial->image) }}" alt="image"></td>
                         </tr>
                         <tr>
                             <th>platform</th>
-                            <td class="text-wrap">{!! $testimonial->platform_id !!}</td>
+                            <td class="text-wrap">{!! $testimonial->platform->name !!}</td>
                         </tr>
 
                         <tr>

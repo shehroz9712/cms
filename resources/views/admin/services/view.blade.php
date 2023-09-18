@@ -21,11 +21,11 @@
                         </tr>
                         <tr>
                             <th>icon</th>
-                            <td>{{ $service->icon }}</td>
+                            <td>{{ frontImage('services/' . $service->icon) }} </td>
                         </tr>
                         <tr>
-                            <th>bg_image</th>
-                            <td>{{ $service->bg_image }}</td>
+                            <th>bg Image</th>
+                            <td>{{ frontImage('services/' . $service->bg_image) }} </td>
                         </tr>
                         <tr>
                             <th>We Offer Heading</th>
@@ -54,7 +54,13 @@
                         </tr>
                         <tr>
                             <th>status</th>
-                            <td>{{ $service->status }}</td>
+                            <td>
+                                @if ($blog->status == 1)
+                                    <div class="alert alert-success">Active</div>
+                                @else
+                                    <div class="alert alert-danger">Inactive</div>
+                                @endif
+                            </td>
                         </tr>
                     </table>
 

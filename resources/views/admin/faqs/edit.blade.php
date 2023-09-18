@@ -43,7 +43,7 @@
                                             @foreach ($pages as $page)
                                                 <option value="{{ $page->id }}"
                                                     {{ old('page_id', $faq->page_id) == $page->id ? 'selected' : '' }}>
-                                                    {{ $page->name }}</option>
+                                                    {{ $page->title }}</option>
                                             @endforeach
                                         </select>
                                         @error('page_id')

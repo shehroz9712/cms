@@ -27,9 +27,14 @@ class BlogController extends Controller
             return DataTables::of($blogs)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('blogs.show', ['blog' => $row->id]) . '" class="edit btn btn-primary btn-sm mr-3">View</a>';
-                    $btn2 = '<a href="' . route('blogs.edit', ['blog' => $row->id]) . '" class="edit btn btn-primary btn-sm">Edit</a>';
-                    return $btn . $btn2;
+                    $viewBtn = '<a href="' . route('blogs.show', ['blog' => $row->id]) . '" class="mr-3 text-primary"><i class="fa fa-eye"></i></a>';
+                    $editBtn = '<a href="' . route('blogs.edit', ['blog' => $row->id]) . '"class=" text-primary mr-2"><i class="fa fa-pen"></i></a>';
+                    $deleteBtn = '<form action="' . route('services.destroy', ['service' => $row->id]) . '" method="POST" class="d-inline">
+                    ' . csrf_field() . '
+                    ' . method_field('DELETE') . '
+                    <button type="submit" class="text-danger" style="border: none; background-color: transparent; cursor: pointer;"><i class="fa fa-trash-alt"></i></button>
+                </form>';
+                    return $viewBtn . $editBtn . $deleteBtn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);

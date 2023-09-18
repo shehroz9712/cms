@@ -19,23 +19,20 @@ class PortfolioController extends Controller
      */
     public function index(Request $request)
     {
-        $portfolios = Portfolio::with('service')->get();
 
 
-        print_r($portfolios);
-die;
         if ($request->ajax()) {
             $portfolios = Portfolio::with('service')->get();
             return DataTables::of($portfolios)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('portfolios.show', ['portfolio' => $row->id]) . '" class="edit btn btn-primary btn-sm mr-3">View</a>';
-                    $btn2 = '<a href="' . route('portfolios.edit', ['portfolio' => $row->id]) . '" class="edit btn btn-primary btn-sm">Edit</a>';
+                    $btn = '<a href="' . route('portfolios.show', ['portfolio' => $row->id]) . '"class="mr-2 text-primary"><i class="fa fa-eye"></i></a>';
+                    $btn2 = '<a href="' . route('portfolios.edit', ['portfolio' => $row->id]) . '" class="text-primary"><i class="fa fa-pen"></i></a>';
                     // Delete button with a form for sending DELETE request
                     $deleteBtn = '<form action="' . route('portfolios.destroy', ['portfolio' => $row->id]) . '" method="POST" class="d-inline">
                         ' . csrf_field() . '
                         ' . method_field('DELETE') . '
-                        <button type="submit" class="edit btn btn-danger btn-sm">Delete</button>
+                        <button type="submit" class="text-danger"><i class="fa fa-trash-alt"></i></button>
                     </form>';
                     return $btn . $btn2 . $deleteBtn;
                 })

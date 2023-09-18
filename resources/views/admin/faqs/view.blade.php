@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">View Services</div>
+                <div class="card-header">View Faq</div>
                 <div class="card-body">
                     <table class="table table-bordered table-responsive">
                         <tr>
@@ -18,11 +18,11 @@
 
                         <tr>
                             <th>page</th>
-                            <td>{{ $faq->page }}</td>
+                            <td>{{ $faq->page->title ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>service</th>
-                            <td>{{ $faq->service }}</td>
+                            <td>{{ $faq->service->title ?? '' }}</td>
                         </tr>
 
                         <tr>

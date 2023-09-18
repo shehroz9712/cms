@@ -45,14 +45,18 @@
                         },
                         {
                             data: 'image',
-                            name: 'image'
+                            name: 'image',
+                            render: function(data, type, full, meta) {
+                                var imageUrl = "{{ frontImage('testimonials/') }}" + '/' + data;
+                                return '<img src="' + imageUrl + '" alt="Image" >';
+                            },
                         },
                         {
                             data: 'content',
                             name: 'content'
                         }, {
-                            data: 'platform_id',
-                            name: 'platform_id'
+                            data: 'platform.name',
+                            name: 'platform.name'
                         },
 
                         {
@@ -66,7 +70,7 @@
                         {
                             data: 'updated_at',
                             name: 'updated_at'
-                            },
+                        },
                         {
                             data: 'action',
                             name: 'action',

@@ -11,7 +11,8 @@
 
                 <div class="card-body">
 
-                    <form action="{{ route('testimonials.store') }}" method="POST" role="form">
+                    <form action="{{ route('testimonials.store') }}" method="POST" enctype="multipart/form-data"
+                        role="form">
                         @csrf
                         @method('POST')
 

@@ -19,6 +19,7 @@
                                     <th>Image</th>
                                     <th>Status</th>
                                     <th>Is on Home</th>
+                                    <th>status</th>
                                     <th>Order</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
@@ -61,7 +62,19 @@
                                             data: 'is_on_home',
                                             name: 'is_on_home'
                                         },
+
+
                                         {
+                                            data: 'status',
+                                            name: 'status',
+                                            render: function(data, type, row) {
+                                                if (data == 1) {
+                                                    return '<div class="alert alert-success">Active</div>';
+                                                } else {
+                                                    return '<div class="alert alert-danger">Inactive</div>';
+                                                }
+                                            }
+                                        }, {
                                             data: 'order',
                                             name: 'order'
                                         },

@@ -18,6 +18,7 @@
                                     <th>Title</th>
                                     <th>Slug</th>
                                     <th>We Offer Heading</th>
+                                    <th>status</th>
                                     <th>Order</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
@@ -51,6 +52,17 @@
                         {
                             data: 'we_offer_heading',
                             name: 'we_offer_heading'
+                        },
+                        {
+                            data: 'status',
+                            name: 'status',
+                            render: function(data, type, row) {
+                                if (data == 1) {
+                                    return '<div class="alert alert-success">Active</div>';
+                                } else {
+                                    return '<div class="alert alert-danger">Inactive</div>';
+                                }
+                            }
                         },
                         {
                             data: 'order',

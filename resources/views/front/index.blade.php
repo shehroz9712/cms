@@ -174,29 +174,14 @@
                 <div class="row">
 
                     <div class="col-lg-12 slick owl-carousel owl-theme">
-                        <div class="item">
-                            <a href="https://www.crunchbase.com/organization/kleinbott-software-development-company"
-                                target="_blank">
-                                <img src="{{ frontImage('badge/image-5.png') }}" alt="" srcset=""></a>
-                        </div>
-                        <div class="item">
-                            <img src="{{ frontImage('badge/image-23.png') }}" alt="" srcset="">
-                        </div>
-                        <div class="item">
-                            <a href="https://www.trustpilot.com/review/kleinbott.com" target="_blank">
-                                <img src="{{ frontImage('badge/image-24.png') }}" alt="" srcset="">
-                            </a>
-                        </div>
+                        @foreach ($testimonial_platforms as $testimonial_platform)
+                            <div class="item">
+                                <a href="{{ $testimonial_platform->link }}" target="_blank">
+                                    <img src="{{ frontImage('badge/' . $testimonial_platform->image) }}" alt=""
+                                        srcset=""></a>
+                            </div>
+                        @endforeach
 
-                        <div class="item">
-                            <img src="{{ frontImage('badge/image-25.png') }}" alt="" srcset="">
-                        </div>
-                        <div class="item">
-                            <img src="{{ frontImage('badge/image-26.png') }}" alt="" srcset="">
-                        </div>
-                        <div class="item">
-                            <img src="{{ frontImage('badge/image-27.png') }}" alt="" srcset="">
-                        </div>
                     </div>
                 </div>
             </div>

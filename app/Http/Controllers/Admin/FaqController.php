@@ -21,13 +21,18 @@ class FaqController extends Controller
     {
         if ($request->ajax()) {
 
-            $faqs = Faq::all();
+            $faqs = Faq::with('service', 'page')->get();
             return DataTables::of($faqs)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('faqs.show', ['faq' => $row->id]) . '" class="edit btn btn-primary btn-sm mr-3">View</a>';
-                    $btn2 = '<a href="' . route('faqs.edit', ['faq' => $row->id]) . '" class="edit btn btn-primary btn-sm">Edit</a>';
-                    return $btn . $btn2;
+                    $viewBtn = '<a href="' . route('faqs.show', ['faq' => $row->id]) . '" class="mr-3 text-primary"><i class="fa fa-eye"></i></a>';
+                    $editBtn = '<a href="' . route('faqs.edit', ['faq' => $row->id]) . '" class=" text-primary mr-2"><i class="fa fa-pen"></i></a>';
+                    $deleteBtn = '<form action="' . route('services.destroy', ['service' => $row->id]) . '" method="POST" class="d-inline">
+                    ' . csrf_field() . '
+                    ' . method_field('DELETE') . '
+                    <button type="submit" class="text-danger" style="border: none; background-color: transparent; cursor: pointer;"><i class="fa fa-trash-alt"></i></button>
+                </form>';
+                    return $viewBtn . $editBtn . $deleteBtn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -56,6 +61,8 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $request->validate([
             'question' => 'required',
             'answer' => 'required',
@@ -64,12 +71,13 @@ class FaqController extends Controller
 
         $data = [
 
-            'service_id' => $request->service_id,
+            'service_id' => $request->page_id ? 0 : $request->service_id,
             'question' => $request->question,
             'answer' => $request->answer,
             'page_id' => $request->page_id,
             'order' => $request->order,
         ];
+
         // Create a new FAQ
         Faq::create($data);
 
@@ -84,7 +92,7 @@ class FaqController extends Controller
      */
     public function show($id)
     {
-        $faq = Faq::findOrFail($id);
+        $faq = Faq::with('service', 'page')->where('id', $id)->first();
         return view('admin.faqs.view', compact('faq'));
     }
 

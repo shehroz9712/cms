@@ -27,3 +27,4 @@ Route::get('blogs', 'IndexController@blogs')->name('blogs');
 Route::get('blog/{slug}', 'IndexController@blog')->name('blog');
 Route::get('contact', 'IndexController@contact')->name('contact');
 Route::get('{slug}', 'IndexController@page')->name('page');
+Route::get('pdf/show-page', 'IndexController@showPage')->name('pdf.showPage');
