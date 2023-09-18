@@ -9,9 +9,7 @@
     <section>
         <div class="row">
             <div class="col-lg-12">
-                @foreach ($images as $image)
-                    <img src="{{ frontImage('images/' . $image) }}" alt="PDF Page">
-                @endforeach
+                <img src="{{ frontImage('comingsoon.png') }}" alt="" srcset="" style="    width: 100%;">
             </div>
         </div>
     </section>
