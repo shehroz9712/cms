@@ -14,7 +14,7 @@
 </div>
 <nav id="navbar_top" class="navbar navbar-expand-lg navbar-dark bg-theme py-4 sticky-top">
     <div class="container">
-        <a class="navbar-brand" {{ route('index') }}> <img src="{{ frontImage('logo/' . $setting->dark_logo) }}"
+        <a class="navbar-brand" href="{{ route('index') }}"> <img src="{{ frontImage('logo/' . $setting->dark_logo) }}"
                 alt="Kleinbott-logo" style="width: 200px;"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"
             aria-expanded="false" aria-label="Toggle navigation">
