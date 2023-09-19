@@ -10,20 +10,21 @@
                         </p>
                         <a class="fs-4" href="mailto:{{ $setting->email }}">{{ $setting->email }}</a>
                         <div class="break"></div>
-                        <a class="fs-6 text-white" href="tel:{{ $setting->phone }}">{{ formatPhoneNumber($setting->phone) }}</a>
+                        <a class="fs-6 text-white"
+                            href="tel:{{ $setting->phone }}">{{ formatPhoneNumber($setting->phone) }}</a>
                         <p class="fs-6 mt-2">{{ $setting->address }}</p>
 
                         <div class="row">
                             <div class="col-lg-6 border-end">
                                 <div>
                                     <p class="fs-6 mt-2">Remote Office 01</p>
-                                    <p class="fs-6 mt-2">{{ $setting->address2 }}</p>
+                                    <p class="fs-6 mt-2">{{ $setting->address_2 }}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 text-lg-end">
                                 <div class="me-lg-4">
                                     <p class="fs-6 mt-2">Remote Office 02</p>
-                                    <p class="fs-6 mt-2">{{ $setting->address3 }}</p>
+                                    <p class="fs-6 mt-2">{{ $setting->address_3 }}</p>
                                 </div>
                             </div>
                         </div>
