@@ -57,12 +57,10 @@
                     <li class="fs-4 mb-2">Services</li>
 
 
-                    <ul>
                         @foreach ($services as $row)
                             <li class="mb-2"><a href="{{ route('service', $row->slug) }}">{{ $row->title }}</a>
                             </li>
                         @endforeach
-                    </ul>
 
                 </ul>
             </div>
