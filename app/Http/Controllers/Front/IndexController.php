@@ -19,7 +19,11 @@ class IndexController extends Controller
     public function index()
     {
 
+
         $page = Page::where('slug', 'home')->first();
+        if (!$page) {
+            return view('front.404'); // Render your custom 404 error page view
+        }
         $faqs_result = Faq::where('page_id', $page->id)->get();
 
         return view('front.index', compact('page', 'faqs_result', 'faqs_result'));
@@ -27,7 +31,11 @@ class IndexController extends Controller
 
     public function about()
     {
+
         $page = Page::where('slug', 'about')->first();
+        if (!$page) {
+            return view('front.404'); // Render your custom 404 error page view
+        }
         $faqs_result = Faq::where('page_id', $page->id)->get();
 
         return view('front.about', compact('page', 'faqs_result'));
@@ -35,7 +43,11 @@ class IndexController extends Controller
 
     public function services()
     {
+
         $page = Page::where('slug', 'services')->first();
+        if (!$page) {
+            return view('front.404'); // Render your custom 404 error page view
+        }
         $faqs_result = Faq::where('page_id', $page->id)->get();
 
         return view('front.services', compact('page', 'faqs_result'));
@@ -51,7 +63,11 @@ class IndexController extends Controller
 
     public function portfolio()
     {
+
         $page = Page::where('slug', 'portfolio')->first();
+        if (!$page) {
+            return view('front.404'); // Render your custom 404 error page view
+        }
         $faqs_result = Faq::where('page_id', $page->id)->get();
 
         $portfolios = Service::active()
@@ -66,7 +82,11 @@ class IndexController extends Controller
 
     public function case_studies()
     {
+
         $page = Page::where('slug', 'case-studies')->first();
+        if (!$page) {
+            return view('front.404'); // Render your custom 404 error page view
+        }
 
         $faqs_result = Faq::where('page_id', $page->id)->get();
 
@@ -77,7 +97,11 @@ class IndexController extends Controller
 
     public function blogs()
     {
+
         $page = Page::where('slug', 'blogs')->first();
+        if (!$page) {
+            return view('front.404'); // Render your custom 404 error page view
+        }
         $faqs_result = Faq::where('page_id', $page->id)->get();
 
         $blogs = Blog::Active()->get();
@@ -94,7 +118,11 @@ class IndexController extends Controller
 
     public function contact()
     {
+
         $page = Page::where('slug', 'contact')->first();
+        if (!$page) {
+            return view('front.404'); // Render your custom 404 error page view
+        }
         $faqs_result = Faq::where('page_id', $page->id)->get();
 
         return view('front.contact', compact('page', 'faqs_result'));
@@ -102,10 +130,15 @@ class IndexController extends Controller
 
     public function page($slug)
     {
-        $page = Page::where('slug', 'contact')->first();
+
+        $page = Page::where('slug', $slug)->first();
+        if (!$page) {
+            return view('front.404'); // Render your custom 404 error page view
+        }
+
         $faqs_result = Faq::where('page_id', $page->id)->get();
 
-        return view('front.contact', compact('page', 'faqs_result'));
+        return view('front.pages', compact('page', 'faqs_result'));
     }
 
 

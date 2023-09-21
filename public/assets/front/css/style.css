@@ -130,7 +130,15 @@ img {
     border-radius: 30px;
     padding-top: 13px;
     margin: 10px;
+    color: white;
+
 }
+
+.footer-social-icon:hover {
+    color: var(--color-6);
+
+}
+
 
 .dropdown-item {
 

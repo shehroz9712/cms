@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::fallback(function () {
+    return view('front.404'); // Replace 'errors.404' with the path to your custom 404 error view
+});
+
+
+
 Route::get('/', 'IndexController@index')->name('index');
 
 Route::post('/contact', 'IndexController@send')->name('send');
@@ -26,5 +32,5 @@ Route::get('case-studies', 'IndexController@case_studies')->name('case-studies')
 Route::get('blogs', 'IndexController@blogs')->name('blogs');
 Route::get('blog/{slug}', 'IndexController@blog')->name('blog');
 Route::get('contact', 'IndexController@contact')->name('contact');
-Route::get('{slug}', 'IndexController@page')->name('page');
 Route::get('pdf/show-page', 'IndexController@showPage')->name('pdf.showPage');
+Route::get('{slug}', 'IndexController@page')->name('page');

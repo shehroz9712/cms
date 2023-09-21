@@ -13,7 +13,7 @@
     <main>
         @yield('content')
         <!-- contact form  end -->
-        @if (count($faqs_result) > 0)
+        @if (isset($faqs_result) && !is_null($faqs_result) && count($faqs_result) > 0)
 
             <section>
                 <div class="container">

@@ -53,6 +53,7 @@
                     <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}"
                         href="{{ route('contact') }}">Contact</a>
                 </li> --}}
+
             </ul>
 
             {{-- <a href="https://corporate.kleinbott.com/" class="btn theme-button">Corporate</a> --}}

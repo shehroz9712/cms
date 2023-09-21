@@ -39,8 +39,8 @@
                     <li class="mb-2"><a href="{{ route('index') }}">HOME</a></li>
                     <li class="mb-2"><a href="{{ route('about') }}">ABOUT</a></li>
                     <li class="mb-2"><a href="{{ route('services') }}">SERVICES</a></li>
-                    <li class="mb-2"><a href="{{ route('portfolio') }}">portfolio</a></li>
-                    <li class="mb-2"><a href="{{ route('case-studies') }}">case studies</a></li>
+                    <li class="mb-2"><a href="{{ route('portfolio') }}">PORTFOLIO</a></li>
+                    <li class="mb-2"><a href="{{ route('case-studies') }}">CASE STUDIES</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-sm-4">
@@ -48,8 +48,8 @@
                     <li class="fs-4 mb-2">Links</li>
                     <li class="mb-2"><a href="{{ route('blogs') }}">BLOG</a></li>
                     <li class="mb-2"><a href="{{ route('contact') }}">CONTACT</a></li>
-                    <li class="mb-2"><a href="#">terms & conditions</a></li>
-                    <li class="mb-2"><a href="#">privacy policy</a></li>
+                    <li class="mb-2"><a href="{{ route('page', 'term-and-condition') }}">TERM & CONDITION</a></li>
+                    <li class="mb-2"><a href="{{ route('page', 'privacy-policy') }}">PRIVACY POLICY</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 col-sm-4">
@@ -57,10 +57,10 @@
                     <li class="fs-4 mb-2">Services</li>
 
 
-                        @foreach ($services as $row)
-                            <li class="mb-2"><a href="{{ route('service', $row->slug) }}">{{ $row->title }}</a>
-                            </li>
-                        @endforeach
+                    @foreach ($services as $row)
+                        <li class="mb-2"><a href="{{ route('service', $row->slug) }}">{{ $row->title }}</a>
+                        </li>
+                    @endforeach
 
                 </ul>
             </div>
@@ -75,43 +75,43 @@
                     <div class="social">
                         <ul class="d-flex justify-content-around p-0">
                             @if (!empty($setting->facebook))
-                                <li class="footer-social-icon">
-                                    <a href="{{ $setting->facebook }}">
+                                <a href="{{ $setting->facebook }}">
+                                    <li class="footer-social-icon">
                                         <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
+                                    </li>
+                                </a>
                             @endif
 
                             @if (!empty($setting->twitter))
-                                <li class="footer-social-icon">
-                                    <a href="{{ $setting->twitter }}">
+                                <a href="{{ $setting->twitter }}">
+                                    <li class="footer-social-icon">
                                         <i class="fab fa-twitter"></i>
-                                    </a>
-                                </li>
+                                    </li>
+                                </a>
                             @endif
 
                             @if (!empty($setting->instagram))
-                                <li class="footer-social-icon">
-                                    <a href="{{ $setting->instagram }}">
+                                <a href="{{ $setting->instagram }}">
+                                    <li class="footer-social-icon">
                                         <i class="fab fa-instagram"></i>
-                                    </a>
-                                </li>
+                                    </li>
+                                </a>
                             @endif
 
                             @if (!empty($setting->linkedin))
-                                <li class="footer-social-icon">
-                                    <a href="{{ $setting->linkedin }}">
+                                <a href="{{ $setting->linkedin }}">
+                                    <li class="footer-social-icon">
                                         <i class="fab fa-linkedin"></i>
-                                    </a>
-                                </li>
+                                    </li>
+                                </a>
                             @endif
 
                             @if (!empty($setting->youtube))
-                                <li class="footer-social-icon">
-                                    <a href="{{ $setting->youtube }}">
+                                <a href="{{ $setting->youtube }}">
+                                    <li class="footer-social-icon">
                                         <i class="fab fa-youtube"></i>
-                                    </a>
-                                </li>
+                                    </li>
+                                </a>
                             @endif
                         </ul>
 
